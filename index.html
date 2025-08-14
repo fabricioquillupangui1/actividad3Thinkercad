@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+ table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 2rem;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 0.8rem;
+      text-align: center;
+    }
+    th {
+      background-color: #34495e;
+      color: white;
+    }
+
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encender un foco si la distancia es mayor a 100cm si es menor encender una alarma</title>
+</head>
+<body>
+    <a href="index.html">visitar primer deber</a><br>
+<a href="segundoDeber.html">visitar segundo deber</a><br>
+    <a href="tercerDeber.html">visitar tercer deber</a><br>
+     <a href="actividad1Thinkercad.html">visitar Acividad 1</a><br>
+      <a href="actividad2Thinkercad.html">visitar Actividad 2</a><br>
+    <a href="actividad4Thinkercad.html">visitar Actividad 4</a>
+    <h2 align="center">ARDUINO</h2>
+
+    <h2 align="center">TÍTULO DE LA PRÁCTICA<br>
+"Pantalla LCD 16x2"</h2>
+ <p>Mostrar en pantalla: Su nombre centrado en la primera linea. Su apellido centrado en la segunda linea .Mostrar 4 diferentes caracteres en cada esquina de la pantalla
+ </p>
+<h2>Introducción</h2>
+<p>Las pantallas LCD (Liquid Crystal Display) de 16x2 son componentes fundamentales en el desarrollo de proyectos electrónicos y embebidos debido a su facilidad de uso y bajo consumo energético. Estas pantallas permiten mostrar hasta 16 caracteres por línea en dos filas, lo que es ideal para comunicar información básica en tiempo real en sistemas embebidos.
+En esta práctica se explorará el uso de una pantalla LCD 16x2 para mostrar texto de manera personalizada. Se aprenderá a centrar texto en la pantalla y a crear caracteres personalizados, los cuales serán colocados en las esquinas de la pantalla para demostrar el control detallado que se puede tener sobre la visualización. Esto permitirá al estudiante fortalecer su comprensión sobre el uso de pantallas LCD, programación de microcontroladores y manejo de caracteres especiales.</p>
+<h2>OBJETIVOS</h2>
+<p>Objetivo General:<br>
+• Desarrollar una aplicación en una pantalla LCD 16x2 que muestre el nombre y apellido del estudiante centrados en cada línea, junto con cuatro caracteres personalizados ubicados en las esquinas del display.<br>
+Objetivos Específicos:<br>
+• Comprender el funcionamiento básico de una pantalla LCD 16x2 y su conexión con un microcontrolador.<br>
+• Diseñar e implementar cuatro caracteres personalizados en cada esquina de la pantalla.Aprender a centrar texto (nombre y apellido) en ambas líneas del LCD utilizando programación.<br>
+• 
+
+<h3>MARCO TEÓRICO</h3>
+<p><strong>Conceptos importantes</strong></p>
+<ul>
+  <li><strong>Arduino:</strong>  Plataforma de hardware libre basada en una placa con un microcontrolador, usada para crear proyectos electrónicos.   </li>
+  <li><strong>Protoboard</strong>   Dispositivo para realizar conexiones de elementos electrónicos que permiten el aprendizaje real en cada proyecto </li>
+  <li><strong>Resistencias:</strong> Componentes que limitan el paso de corriente eléctrica, protegiendo otros elementos del circuito como los LEDs.  </li>
+  <li><strong>Cables de conexión:</strong>   Conductores utilizados para unir componentes electrónicos y permitir el flujo de corriente en el circuito.  </li>
+<li><strong>Pantalla LCD:</strong>  es un módulo de visualización de texto muy utilizado en proyectos con Arduino. El número "16x2" indica que puede mostrar 16 caracteres por línea en 2 líneas. Este tipo de pantalla es ideal para mostrar datos como temperaturas, distancias, mensajes, menús, entre otros </li>
+</ul>
+<img src="https://naylampmechatronics.com/img/cms/Blog/LCD%20I2C/desplazamiento%20LCD%20I2C.PNG" width="800">
+
+<h3>Tabla de creación de caracteres especiales</h3>
+<p>Los caracteres personalizados en pantallas LCD 16x2 se diseñan usando una matriz de 5x8 píxeles. Cada fila de esta matriz se representa con un número binario (de 0 a 31) y se programa normalmente con funciones como createChar() en Arduino. A continuación, se presenta una tabla ejemplo:</p>
+      <table>
+        <tr><th>Carácter</th><th>Código binario (por fila)</th><th>	Código decimal</th></tr>
+        <tr><td>(cara feliz)</td><td>0b00000, 0b01010, 0b00000, 0b00000, 0b10001, 0b01110, 0b00000, 0b00000</td><td>{0, 10, 0, 0, 17, 14, 0, 0}</td></tr>
+        <tr><td>(bloque)</td><td>0b11111, 0b11111, 0b11111, 0b11111, 0b11111, 0b11111, 0b11111, 0b11111</td><td>{31, 31, 31, 31, 31, 31, 31, 31}</td></tr>
+      <tr><td>(corazón)</td><td>0b00000, 0b01010, 0b11111, 0b11111, 0b01110, 0b00100, 0b00000, 0b00000</td><td>{0, 10, 31, 31, 14, 4, 0, 0}</td></tr>
+    <tr><td>(flecha arriba)</td><td>0b00100, 0b01110, 0b10101, 0b00100, 0b00100, 0b00100, 0b00100, 0b00100</td><td>	{4, 14, 21, 4, 4, 4, 4, 4}</td>
+    </table>
+
+<div class="materiales">
+        <h2>🔧 MATERIALES Y EQUIPO - Práctica de Arduino</h2>
+        <ul>
+ <li>1 Placa Arduino UNO</li>
+<li>1 Resistencia de 220 ohm para el LED</li>
+<li>1 Protoboard (placa de pruebas)</li>
+<li>Cables de conexión tipo macho-macho</li>
+<li>Cable USB para conectar Arduino al computador</li>
+<li>Computador con plataforma Tinkercad o Arduino IDE</li>
+
+</ul>
+    </div>
+  <h3>PROCEDIMIENTO</h3>
+ <h1>Código usado en la práctica </h1>
+<p>
+    <table border="1">
+#include <LiquidCrystal.h><br>
+<br>
+// Configuración de pines del LCD: rs, en, d4, d5, d6, d7<br>
+LiquidCrystal lcd(7, 6, 5, 4, 3, 2);<br>
+<br>
+// Carácter personalizado 0: carita feliz<br>
+byte smyle[8] = {<br>
+  0b00000,<br>
+  0b01010,<br>
+  0b01010,<br>
+  0b00000,<br>
+  0b00100,<br>
+  0b00100,<br>
+  0b10001,<br>
+  0b01110<br>
+};<br>
+<br>
+// Carácter personalizado 1: corazón<br>
+byte corazon[8] = {<br>
+  0b00000,<br>
+  0b01010,<br>
+  0b11111,<br>
+  0b11111,<br>
+  0b11111,<br>
+  0b01110,<br>
+  0b00100,<br>
+  0b00000<br>
+};<br>
+<br>
+// Carácter personalizado 2: sol<br>
+byte sol[8] = {<br>
+  0b00100,<br>
+  0b10101,<br>
+  0b01110,<br>
+  0b11111,<br>
+  0b01110,<br>
+  0b10101,<br>
+  0b00100,<br>
+  0b00000<br>
+};<br>
+<br>
+// Carácter personalizado 3: flecha derecha<br>
+byte flecha[8] = {<br>
+  0b00000,<br>
+  0b00100,<br>
+  0b00010,<br>
+  0b11111,<br>
+  0b00010,<br>
+  0b00100,<br>
+  0b00000,<br>
+  0b00000<br>
+};<br>
+<br>
+void setup() {<br>
+  Serial.begin(9600);<br>
+  pinMode(6, OUTPUT);<br>
+  pinMode(5, OUTPUT);<br>
+  lcd.begin(16, 2);  // Pantalla de 16 columnas y 2 filas<br>
+<br>
+  // Crear los caracteres personalizados en las posiciones 0, 1, 2 y 3<br>
+  lcd.createChar(0, smyle);<br>
+  lcd.createChar(1, corazon);<br>
+  lcd.createChar(2, sol);<br>
+  lcd.createChar(3, flecha);<br>
+<br>
+  // Mostrar los caracteres en las esquinas<br>
+  lcd.setCursor(0, 0);    // Esquina superior izquierda<br>
+  lcd.write(byte(0));     // Carita feliz<br>
+<br>
+  lcd.setCursor(15, 0);   // Esquina superior derecha<br>
+  lcd.write(byte(1));     // Corazón<br>
+<br>
+  lcd.setCursor(0, 1);    // Esquina inferior izquierda<br>
+  lcd.write(byte(2));     // Sol<br>
+<br>
+  lcd.setCursor(15, 1);   // Esquina inferior derecha<br>
+  lcd.write(byte(3));     // Flecha<br>
+<br>
+  // Mostrar tu nombre<br>
+  lcd.setCursor(4, 0);    // Posicionar en el centro aproximadamente<br>
+  lcd.print("Fabricio");<br>
+<br>
+  // Mostrar tu apellido<br>
+  lcd.setCursor(2, 1);    // Posicionar un poco más centrado<br>
+  lcd.print("Quillupangui");<br>
+}<br>
+<br>
+void loop() {<br>
+  }<br>
+
+</table>
+
+</p>
+<h3>ANÁLISIS Y DISCUSIÓN</h3>
+  <h2>Preguntas y Respuestas sobre la Práctica</h2>
+<ol>
+  <li>
+    <strong>¿Qué es una pantalla LCD 16x2?</strong><br>
+    Es una pantalla de cristal líquido que puede mostrar 2 líneas de hasta 16 caracteres cada una.
+  </li>
+  <li>
+    <strong>¿Qué tipo de información se puede mostrar en una LCD 16x2?</strong><br>
+    Texto, números y caracteres personalizados diseñados por el usuario.
+  </li>
+  <li>
+    <strong>¿Qué ventaja tiene usar una pantalla LCD en un proyecto?</strong><br>
+    Permite mostrar información útil al usuario en tiempo real, como mensajes, datos o instrucciones.
+  </li>
+  <li>
+    <strong>¿Cómo se puede centrar un texto en la pantalla LCD?</strong><br>
+    Calculando la longitud del texto y agregando espacios en blanco antes del mensaje para posicionarlo en el centro.
+  </li>
+  <li>
+    <strong>¿Qué es un carácter personalizado en una LCD?</strong><br>
+    Es un gráfico pequeño creado por el usuario utilizando una matriz de 5x8 píxeles, que se puede mostrar en la pantalla.
+  </li>
+  <li>
+    <strong>¿Cuántos caracteres personalizados se pueden crear al mismo tiempo?</strong><br>
+    Hasta 8 caracteres personalizados simultáneos en la mayoría de pantallas LCD basadas en el controlador HD44780.
+  </li>
+  <li>
+    <strong>¿Qué pines se utilizan normalmente para conectar una LCD al microcontrolador?</strong><br>
+    Se usan pines de control como RS, E y RW, además de pines de datos (D4-D7 en modo 4 bits o D0-D7 en modo 8 bits).
+  </li>
+  <li>
+    <strong>¿Cuál es el objetivo de esta práctica?</strong><br>
+    Aprender a mostrar texto centrado y caracteres personalizados en una pantalla LCD 16x2 utilizando programación.
+  </li>
+</ol>
+    <div class="seccion">
+        <h2>📝 Conclusiones de la Práctica</h2>
+        <ol>
+  <li>Las pantallas LCD 16x2 son una herramienta versátil y de bajo costo que permite mostrar información de manera clara en sistemas embebidos.</li>
+  <li>Centrando texto en una pantalla LCD se mejora la presentación visual del contenido, lo que puede ser útil en productos finales o prototipos más presentables.</li>
+  <li>El uso de caracteres personalizados expande la funcionalidad de la pantalla LCD, permitiendo incluir íconos o gráficos simples.</li>
+  <li>Esta práctica fortalece las habilidades de programación y lógica necesarias para interactuar con hardware desde un nivel básico.</li>
+</ol>
+    </div>
+<h3>ANEXOS</h3>
+    <h2><strong> Capturas de pantalla del simulador</strong> </h2>
+    <h3>Comprobación de mensajes en la pantalla LCD y simbolos</h3>
+<div class="contenedor-imagenes">
+        <figure>
+            <img src="https://i.postimg.cc/htfNRp5H/f1.png"width="600">
+        <figcaption>Figura 1: Conexión de lcd</figcaption>
+        </figure>
+</div>
+<div class="contenedor-imagenes">
+        <figure>
+            <img src="https://i.postimg.cc/52X7Hj1G/f22.png"width="600">
+        <figcaption>Figura 2: Codigo de simbolos</figcaption>
+        </figure>
+</div>
+<div class="contenedor-imagenes">
+        <figure>
+            <img src="https://i.postimg.cc/2yNCVgPb/fffff1.png"width="600">
+        <figcaption>Figura 3: demostración final</figcaption>
+        </figure>
+</div>
+    <h2><strong> Esquemas de conexión en Tinkercad</strong><a href="http://tinkercad.com/things/bQRtJ69nvgE-acividad-3/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard">Dar click aquí</a> </h2>
+  <h3>Esquemático de conexiones de la práctica</h3>
+    <img src="https://i.postimg.cc/MZhbst8s/esq.png"width="1000">
+
+
+    <h2>Simulación de Thinkercad</h2>
+  
+    <iframe width="725" height="453" src="https://www.tinkercad.com/embed/bQRtJ69nvgE?editbtn=1" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+</body>
+</html>
